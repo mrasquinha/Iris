@@ -1,6 +1,6 @@
-bin_PROGRAMS = simMc2Mesh_debug simMc2Mesh
+bin_PROGRAMS = simMc2Mesh
 
-noinst_LIBRARIES = libIris_debug.a libIris.a
+noinst_LIBRARIES = libIris.a
 
 OBJDIR = $(TOPDIR)/build
 BUILDDIR = $(TOPDIR)/build
@@ -44,28 +44,9 @@ simMc2Mesh_SOURCES = \
 	       source/frontend/impl/simMc2Mesh.cc
 simMc2Mesh_LDADD = libIris.a
 
-## simMc2Mesh_debug
-simMc2Mesh_debug_CXXFLAGS = $(CXX_FLAGS) 
-
-simMc2Mesh_debug_SOURCES = \
-	       source/frontend/impl/simMc2Mesh.cc
-simMc2Mesh_debug_LDADD = libIris_debug.a
-
-## testRouter
-#testRouter_CXXFLAGS = $(CXX_FLAGS)
-
-#testRouter_SOURCES = \
-	#	  source/tests/test4Mesh.cc
-
-#testRouter_LDADD = libIris.a
-
 ##libIris
 libIris_a_CXXFLAGS = $(CXX_FLAGS)
 libIris_a_SOURCES = $(IRIS_SOURCES)
-
-##libIris_debug
-libIris_debug_a_CXXFLAGS = $(CXX_FLAGS) $(DEBUG_FLAGS)
-libIris_debug_a_SOURCES = $(IRIS_SOURCES)
 
 ##Headers
 noinst_HEADERS = \

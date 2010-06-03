@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ(2.60)
+AC_PREREQ(2.59)
 AC_INIT([iris],[0.1],[mitchelle dot rasquinha at gatech.edu])
 AM_INIT_AUTOMAKE([Iris], [1.0], [mitch])
 AC_CONFIG_SRCDIR([config.h.in])

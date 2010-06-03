@@ -1,7 +1,20 @@
 GCOV command line
 -------------------
-1. the compiler flags for gcov ( -fprofile-arcs and -ftest-coverage ) are already added to the makefile
-2. Run the binary for ringSim
-3. gcov -n ringSim ( may be reqd to rename ringSim-ringSim.gcna )
-    Remove the n flag for detailed gcov files.
+1. Follow the given steps to compile Iris
+    ./configure
+    make
 
+2. Run the simulator
+    ./simMc2Mesh config/generic.cfg
+
+    The following switches are supported at the command line in the current version
+    --thread_id_bits, --mc_bits --early_credit
+
+Environment details
+-------------------
+
+The current version has been tested with 
+1. gcc version 4.3.3 (Ubuntu 4.3.3-5ubuntu4)
+    Linux 2.6.28-18-generic #60-Ubuntu SMP i686 GNU/Linux
+2. gcc version 4.2.4 (Ubuntu 4.2.4-1ubuntu4)
+    Linux 2.6.24-23-generic #1 SMP i686 GNU/Linux
