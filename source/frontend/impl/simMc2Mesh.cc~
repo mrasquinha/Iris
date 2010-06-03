@@ -1,0 +1,230 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  simMc2Mesh.cc
+ *
+ *    Description:  This is a 2x2 mesh network with 3 trace packet generators
+ *    and a single memory controller
+ *
+ *        Version:  1.0
+ *        Created:  04/20/2010 02:59:08 AM
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Mitchelle Rasquinha (), mitchelle.rasquinha@gatech.edu
+ *        Company:  Georgia Institute of Technology
+ *
+ * =====================================================================================
+ */
+
+#ifndef  _simmc2mesh_cc_INC
+#define  _simmc2mesh_cc_INC
+
+#include	"mesh.h"
+
+int
+main ( int argc, char *argv[] )
+{
+    if(argc<2)
+    {
+        cout << "Error: Requires config file for input parameters\n";
+        return 1;
+    }
+
+    /* The following parameters must be specified in the config with the
+     * correct knobs */
+    uint vcs=0, ports=0, buffer_size=0, credits=0;
+    uint grid_size=0, no_nodes=0, no_mcs=0;
+    uint max_sim_time = 10000;
+    vector<string> traces;
+    string trace_name;
+
+    ifstream fd(argv[1]);
+    string data, word;
+    while(!fd.eof())
+    {
+        getline(fd,data);
+        istringstream iss( data, istringstream::in);
+        while ( iss >> word )
+        {
+            if ( word.compare("VCS") == 0)   
+                iss >> vcs;
+            if ( word.compare("PORTS") == 0) 
+                iss >> ports;
+            if ( word.compare("BUFFER_SIZE") == 0)
+                 iss >> buffer_size;
+            if ( word.compare("CREDITS") == 0)
+                 iss >> credits;
+            if ( word.compare("GRID_SIZE") == 0)
+                 iss >> grid_size;
+            if ( word.compare("NO_OF_NODES") == 0)
+                iss >> no_nodes;
+            if ( word.compare("MCS") == 0)
+                iss >> no_mcs;
+            if ( word.compare("MAX_SIM_TIME") == 0)
+                iss >> max_sim_time;
+            if ( word.compare("TRACE") == 0)
+            {
+                iss >> trace_name;
+                traces.push_back(trace_name);
+            }
+        }
+    }
+
+    /* Compute additional parameters */
+    uint links = (ports + (grid_size -1)*(ports-1)) + ( (ports-1) + (grid_size -1)*(ports-2))*(grid_size-1);
+    fd.close();
+
+        /* Creating mesh topology with the following config */
+	cerr << "\n-----------------------------------------------------------------------------------\n";
+        cerr << "** CAPSTONE - Cycle Accurate Parallel Simulator Technologgy for On-Chip Networks **\n";
+        cerr << " This is simIris. A second version of Capstone." << endl;
+        cerr << "-- Computer Architecture and Systems Lab                                         --\n"
+            << "-- Georgia Institute of Technology                                               --\n"
+            << "-----------------------------------------------------------------------------------\n";
+        cerr << "Cmd line: ";
+        for( int i=0; i<argc; i++)
+            cerr << argv[i] << " ";
+        cerr << endl;
+        cerr << " vcs:\t" << vcs << endl;
+        cerr << " ports:\t" << ports << endl;
+        cerr << " buffer_size:\t" << buffer_size << endl;
+        cerr << " credits:\t" << credits << endl;
+        cerr << " no_nodes( spread over a 2D Mesh topology):\t" << no_nodes << endl;
+        cerr << " grid size:\t" << grid_size << endl;
+        cerr << " links:  \t" << links << endl;
+        cerr << " no_of_mcs:\t" << no_mcs << endl;
+        cerr << " no_of_traces:\t" << traces.size() << endl;
+        cerr << " max_sim_time:\t" << max_sim_time << endl;
+
+    if( traces.size() < (no_nodes - no_mcs) )
+    {
+        cout << " Not enough trace files for simulation " << endl;
+        exit(1);
+    }
+
+    Mesh* mesh = new Mesh();
+    mesh->init( ports, vcs, credits, buffer_size, no_nodes, grid_size, links);
+    mesh->max_sim_time = max_sim_time;
+
+    /* Create the mesh->routers and mesh->interfaces */
+    for( uint i=0; i<no_nodes; i++)
+    {
+        mesh->routers.push_back( new GenericRouterNoVcs());
+        mesh->interfaces.push_back ( new GenericInterface());
+    }
+
+    /*  Create the TPG and mc modules */
+    for( uint i=0; i<(no_nodes-no_mcs); i++)
+        mesh->processors.push_back( new GenericTPG() );
+
+    for( uint i=0; i<no_mcs; i++)
+        mesh->processors.push_back( new NI() );
+
+    for( uint i=0; i<(no_nodes-no_mcs); i++)
+        static_cast<GenericTPG*>(mesh->processors[i])->set_trace_filename(traces[i]);
+
+    /* Create the links */
+    for ( uint i=0; i<links; i++)
+    { 
+        mesh->link_a.push_back(new GenericLink());
+        mesh->link_b.push_back(new GenericLink());
+    }
+
+    mesh->connect_interface_processor();
+
+    /* Set all the component ids */
+    uint comp_id = 0, alink_comp_id = 100, blink_comp_id = 200;
+    for ( uint i=0 ; i<no_nodes; i++ )
+    {
+        mesh->processors[i]->setComponentId(comp_id++);
+        mesh->interfaces[i]->setComponentId(comp_id++);
+        mesh->routers[i]->setComponentId(comp_id++);
+    }
+
+    for ( uint i=0 ; i<links; i++ )
+    {
+        mesh->link_a[i]->setComponentId(alink_comp_id++);
+        mesh->link_b[i]->setComponentId(blink_comp_id++);
+        mesh->link_a[i]->setup();
+        mesh->link_b[i]->setup();
+    }
+
+    /*  Set up the node ips for components */
+    for ( uint i=0 ; i<no_nodes ; i++ )
+    {
+        mesh->interfaces[i]->node_ip = i;
+        mesh->routers[i]->node_ip = i;
+        mesh->processors[i]->node_ip = i;
+    }
+
+    /* Set the number of ports, vcs, credits and buffer sizes for the
+     * components */
+    for ( uint i=0 ; i<no_nodes ; i++ )
+    {
+        mesh->interfaces[i]->set_no_vcs(vcs);
+        mesh->interfaces[i]->set_no_credits(credits);
+        mesh->interfaces[i]->set_buffer_size(credits);
+        mesh->processors[i]->set_no_vcs(vcs);
+    }
+
+    mesh->setup();
+
+    /*  Set no of ports and positions for routing */
+    vector< uint > grid_x;
+    vector< uint > grid_y;
+    grid_x.resize(no_nodes);
+    grid_y.resize(no_nodes);
+
+    /* Limitation of only modelling squares */
+    for ( uint i=0 ; i<grid_size ; i++ )
+        for ( uint j=0 ; j<grid_size ; j++ )
+        {
+            grid_x[(i*grid_size)+j] = j;
+            grid_y[(i*grid_size)+j] = i;
+        }
+
+
+    for ( uint i=0 ; i<no_nodes ; i++ )
+        mesh->routers[i]->set_no_nodes(no_nodes);
+
+    for ( uint i=0 ; i<no_nodes ; i++ )
+        for( uint j=0; j < ports ; j++)
+            for( uint k=0; k < no_nodes ; k++) // Assuming is a square mesh. 
+            {
+                static_cast<GenericRouterNoVcs*>(mesh->routers[i])->set_grid_x_location(j,k, grid_x[k]);
+                static_cast<GenericRouterNoVcs*>(mesh->routers[i])->set_grid_y_location(j,k, grid_y[k]);
+            }
+
+    mesh->connect_interface_routers();
+    mesh->connect_routers();
+
+    /*  Printing out all component after setup */
+    for ( uint i=0 ; i<no_nodes; i++ )
+    {
+        cout << "\nTPG: " << i << " " << mesh->processors[i]->toString();
+        cout << "\ninterface: " << i << " " << mesh->interfaces[i]->toString();
+        cout << "\nrouter: " << i << " " << mesh->routers[i]->toString();
+    }
+
+    for ( uint i=0 ; i<links ; i++ )
+    {
+        cout << "\nlinka_" << i << " " << mesh->link_a[i]->toString();
+        cout << "\nlinkb_" << i << " " << mesh->link_b[i]->toString();
+    }
+    
+    Simulator::StopAt(max_sim_time);
+    Simulator::Run();
+
+    cerr << mesh->print_stats();
+    ((NI*)mesh->processors[3])->print_stats;
+
+    cerr << "------------ End SimIris ---------------------" << endl;
+
+    delete mesh;
+
+    return 0;
+}				/* ----------  end of function main  ---------- */
+
+
+#endif   /* ----- #ifndef _simmc2mesh_cc_INC  ----- */

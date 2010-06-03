@@ -1,0 +1,514 @@
+
+-----------------------------------------------------------------------------------
+** CAPSTONE - Cycle Accurate Parallel Simulator Technologgy for On-Chip Networks **
+ This is simIris. A second version of Capstone.
+-- Computer Architecture and Systems Lab                                         --
+-- Georgia Institute of Technology                                               --
+-----------------------------------------------------------------------------------
+Cmd line: ./simMc2Mesh config/small_4_mesh.cfg 
+ vcs:	1
+ ports:	5
+ buffer_size:	10
+ credits:	1
+ no_nodes( spread over a 2D Mesh topology):	9
+ grid size:	3
+ links:  	33
+ no_of_mcs:	1
+ no_of_traces:	16
+ max_sim_time:	100000
+ max_phy_link_bits:	256
+ THREAD_BITS_POSITION:	22
+ MC_ADDR_BITS:	18
+
+ router[0] packets: 1319
+ router[0] flits: 9085
+ router[0] packet latency: 48419
+ router[0] flits/packets: 6.88779
+ router[0] average packet latency: 36.7089
+ router[0] last_flit_out_cycle: 99862 
+
+ interface[0] flits_in: 2034
+ interface[0] packets_in: 678
+ interface[0] flits_out: 7051
+ interface[0] packets_out: 641
+ interface[0] total_packet_latency(In packets): 21962
+ interface[0] avg_packet_latency(In packets): 32.3923
+
+GenericFlatMc: 	 vcs: 2	 address: 0	 node_ip: 0
+ packets:	 642
+ min_pkt_latency:	28
+
+ router[1] packets: 739
+ router[1] flits: 6089
+ router[1] packet latency: 33182
+ router[1] flits/packets: 8.23951
+ router[1] average packet latency: 44.9012
+ router[1] last_flit_out_cycle: 99519 
+
+ interface[1] flits_in: 1331
+ interface[1] packets_in: 121
+ interface[1] flits_out: 384
+ interface[1] packets_out: 128
+ interface[1] total_packet_latency(In packets): 9623
+ interface[1] avg_packet_latency(In packets): 79.5289
+
+GenericTPG: 	 trace: ./traces/test2.tr	 vcs: 2	 address: 3	 node_ip: 1
+ packets:	 128
+ min_pkt_latency:	80
+
+ router[2] packets: 368
+ router[2] flits: 3032
+ router[2] packet latency: 16411
+ router[2] flits/packets: 8.23913
+ router[2] average packet latency: 44.5951
+ router[2] last_flit_out_cycle: 99522 
+
+ interface[2] flits_in: 1320
+ interface[2] packets_in: 120
+ interface[2] flits_out: 381
+ interface[2] packets_out: 127
+ interface[2] total_packet_latency(In packets): 9959
+ interface[2] avg_packet_latency(In packets): 82.9917
+
+GenericTPG: 	 trace: ./traces/test3.tr	 vcs: 2	 address: 6	 node_ip: 2
+ packets:	 127
+ min_pkt_latency:	86
+
+ router[3] packets: 580
+ router[3] flits: 2996
+ router[3] packet latency: 16317
+ router[3] flits/packets: 5.16552
+ router[3] average packet latency: 28.1328
+ router[3] last_flit_out_cycle: 99859 
+
+ interface[3] flits_in: 968
+ interface[3] packets_in: 88
+ interface[3] flits_out: 279
+ interface[3] packets_out: 93
+ interface[3] total_packet_latency(In packets): 7033
+ interface[3] avg_packet_latency(In packets): 79.9205
+
+GenericTPG: 	 trace: ./traces/test4.tr	 vcs: 2	 address: 9	 node_ip: 3
+ packets:	 93
+ min_pkt_latency:	79
+
+ router[4] packets: 269
+ router[4] flits: 1783
+ router[4] packet latency: 10251
+ router[4] flits/packets: 6.62825
+ router[4] average packet latency: 38.1078
+ router[4] last_flit_out_cycle: 99556 
+
+ interface[4] flits_in: 770
+ interface[4] packets_in: 70
+ interface[4] flits_out: 222
+ interface[4] packets_out: 74
+ interface[4] total_packet_latency(In packets): 5805
+ interface[4] avg_packet_latency(In packets): 82.9286
+
+GenericTPG: 	 trace: ./traces/test1.tr	 vcs: 2	 address: 12	 node_ip: 4
+ packets:	 74
+ min_pkt_latency:	84
+
+ router[5] packets: 194
+ router[5] flits: 1550
+ router[5] packet latency: 8588
+ router[5] flits/packets: 7.98969
+ router[5] average packet latency: 44.268
+ router[5] last_flit_out_cycle: 99552 
+
+ interface[5] flits_in: 759
+ interface[5] packets_in: 69
+ interface[5] flits_out: 219
+ interface[5] packets_out: 73
+ interface[5] total_packet_latency(In packets): 5934
+ interface[5] avg_packet_latency(In packets): 86
+
+GenericTPG: 	 trace: ./traces/test2.tr	 vcs: 2	 address: 15	 node_ip: 5
+ packets:	 73
+ min_pkt_latency:	90
+
+ router[6] packets: 252
+ router[6] flits: 1308
+ router[6] packet latency: 7695
+ router[6] flits/packets: 5.19048
+ router[6] average packet latency: 30.5357
+ router[6] last_flit_out_cycle: 99787 
+
+ interface[6] flits_in: 759
+ interface[6] packets_in: 69
+ interface[6] flits_out: 219
+ interface[6] packets_out: 73
+ interface[6] total_packet_latency(In packets): 5727
+ interface[6] avg_packet_latency(In packets): 83
+
+GenericTPG: 	 trace: ./traces/test3.tr	 vcs: 2	 address: 18	 node_ip: 6
+ packets:	 73
+ min_pkt_latency:	87
+
+ router[7] packets: 162
+ router[7] flits: 902
+ router[7] packet latency: 5678
+ router[7] flits/packets: 5.5679
+ router[7] average packet latency: 35.0494
+ router[7] last_flit_out_cycle: 98897 
+
+ interface[7] flits_in: 572
+ interface[7] packets_in: 52
+ interface[7] flits_out: 165
+ interface[7] packets_out: 55
+ interface[7] total_packet_latency(In packets): 4445
+ interface[7] avg_packet_latency(In packets): 85.4808
+
+GenericTPG: 	 trace: ./traces/test4.tr	 vcs: 2	 address: 21	 node_ip: 7
+ packets:	 55
+ min_pkt_latency:	87
+
+ router[8] packets: 107
+ router[8] flits: 737
+ router[8] packet latency: 4375
+ router[8] flits/packets: 6.88785
+ router[8] average packet latency: 40.8879
+ router[8] last_flit_out_cycle: 98828 
+
+ interface[8] flits_in: 572
+ interface[8] packets_in: 52
+ interface[8] flits_out: 165
+ interface[8] packets_out: 55
+ interface[8] total_packet_latency(In packets): 4623
+ interface[8] avg_packet_latency(In packets): 88.9038
+
+GenericTPG: 	 trace: ./traces/test1.tr	 vcs: 2	 address: 24	 node_ip: 8
+ packets:	 55
+ min_pkt_latency:	88
+
+GenericLink: 	address: 1000	input_connection: 1	output_connection: 2
+ link[1000] flits_passed: 7051
+ link[1000] credits_passed: 7051. 
+
+
+GenericLink: 	address: 5000	input_connection: 2	output_connection: 1
+ link[5000] flits_passed: 2034
+ link[5000] credits_passed: 2034. 
+
+
+GenericLink: 	address: 1001	input_connection: 4	output_connection: 5
+ link[1001] flits_passed: 384
+ link[1001] credits_passed: 384. 
+
+
+GenericLink: 	address: 5001	input_connection: 5	output_connection: 4
+ link[5001] flits_passed: 1331
+ link[5001] credits_passed: 1331. 
+
+
+GenericLink: 	address: 1002	input_connection: 7	output_connection: 8
+ link[1002] flits_passed: 381
+ link[1002] credits_passed: 381. 
+
+
+GenericLink: 	address: 5002	input_connection: 8	output_connection: 7
+ link[5002] flits_passed: 1320
+ link[5002] credits_passed: 1320. 
+
+
+GenericLink: 	address: 1003	input_connection: 10	output_connection: 11
+ link[1003] flits_passed: 279
+ link[1003] credits_passed: 279. 
+
+
+GenericLink: 	address: 5003	input_connection: 11	output_connection: 10
+ link[5003] flits_passed: 968
+ link[5003] credits_passed: 968. 
+
+
+GenericLink: 	address: 1004	input_connection: 13	output_connection: 14
+ link[1004] flits_passed: 222
+ link[1004] credits_passed: 222. 
+
+
+GenericLink: 	address: 5004	input_connection: 14	output_connection: 13
+ link[5004] flits_passed: 770
+ link[5004] credits_passed: 770. 
+
+
+GenericLink: 	address: 1005	input_connection: 16	output_connection: 17
+ link[1005] flits_passed: 219
+ link[1005] credits_passed: 219. 
+
+
+GenericLink: 	address: 5005	input_connection: 17	output_connection: 16
+ link[5005] flits_passed: 759
+ link[5005] credits_passed: 759. 
+
+
+GenericLink: 	address: 1006	input_connection: 19	output_connection: 20
+ link[1006] flits_passed: 219
+ link[1006] credits_passed: 219. 
+
+
+GenericLink: 	address: 5006	input_connection: 20	output_connection: 19
+ link[5006] flits_passed: 759
+ link[5006] credits_passed: 759. 
+
+
+GenericLink: 	address: 1007	input_connection: 22	output_connection: 23
+ link[1007] flits_passed: 165
+ link[1007] credits_passed: 165. 
+
+
+GenericLink: 	address: 5007	input_connection: 23	output_connection: 22
+ link[5007] flits_passed: 572
+ link[5007] credits_passed: 572. 
+
+
+GenericLink: 	address: 1008	input_connection: 25	output_connection: 26
+ link[1008] flits_passed: 165
+ link[1008] credits_passed: 165. 
+
+
+GenericLink: 	address: 5008	input_connection: 26	output_connection: 25
+ link[5008] flits_passed: 572
+ link[5008] credits_passed: 572. 
+
+
+GenericLink: 	address: 1009	output_connection: 2
+ link[1009] flits_passed: 0
+ link[1009] credits_passed: 0. 
+
+
+GenericLink: 	address: 5009	input_connection: 2
+ link[5009] flits_passed: 0
+ link[5009] credits_passed: 0. 
+
+
+GenericLink: 	address: 1010	input_connection: 2	output_connection: 5
+ link[1010] flits_passed: 5324
+ link[1010] credits_passed: 5324. 
+
+
+GenericLink: 	address: 5010	input_connection: 5	output_connection: 2
+ link[5010] flits_passed: 765
+ link[5010] credits_passed: 765. 
+
+
+GenericLink: 	address: 1011	input_connection: 5	output_connection: 8
+ link[1011] flits_passed: 2651
+ link[1011] credits_passed: 2651. 
+
+
+GenericLink: 	address: 5011	input_connection: 8	output_connection: 5
+ link[5011] flits_passed: 381
+ link[5011] credits_passed: 381. 
+
+
+GenericLink: 	address: 1012	output_connection: 11
+ link[1012] flits_passed: 0
+ link[1012] credits_passed: 0. 
+
+
+GenericLink: 	address: 5012	input_connection: 11
+ link[5012] flits_passed: 0
+ link[5012] credits_passed: 0. 
+
+
+GenericLink: 	address: 1013	input_connection: 11	output_connection: 14
+ link[1013] flits_passed: 0
+ link[1013] credits_passed: 0. 
+
+
+GenericLink: 	address: 5013	input_connection: 14	output_connection: 11
+ link[5013] flits_passed: 441
+ link[5013] credits_passed: 441. 
+
+
+GenericLink: 	address: 1014	input_connection: 14	output_connection: 17
+ link[1014] flits_passed: 0
+ link[1014] credits_passed: 0. 
+
+
+GenericLink: 	address: 5014	input_connection: 17	output_connection: 14
+ link[5014] flits_passed: 219
+ link[5014] credits_passed: 219. 
+
+
+GenericLink: 	address: 1015	output_connection: 20
+ link[1015] flits_passed: 0
+ link[1015] credits_passed: 0. 
+
+
+GenericLink: 	address: 5015	input_connection: 20
+ link[5015] flits_passed: 0
+ link[5015] credits_passed: 0. 
+
+
+GenericLink: 	address: 1016	input_connection: 20	output_connection: 23
+ link[1016] flits_passed: 0
+ link[1016] credits_passed: 0. 
+
+
+GenericLink: 	address: 5016	input_connection: 23	output_connection: 20
+ link[5016] flits_passed: 330
+ link[5016] credits_passed: 330. 
+
+
+GenericLink: 	address: 1017	input_connection: 23	output_connection: 26
+ link[1017] flits_passed: 0
+ link[1017] credits_passed: 0. 
+
+
+GenericLink: 	address: 5017	input_connection: 26	output_connection: 23
+ link[5017] flits_passed: 165
+ link[5017] credits_passed: 165. 
+
+
+GenericLink: 	address: 1018	input_connection: 8
+ link[1018] flits_passed: 0
+ link[1018] credits_passed: 0. 
+
+
+GenericLink: 	address: 5018	output_connection: 8
+ link[5018] flits_passed: 0
+ link[5018] credits_passed: 0. 
+
+
+GenericLink: 	address: 1019	input_connection: 17
+ link[1019] flits_passed: 0
+ link[1019] credits_passed: 0. 
+
+
+GenericLink: 	address: 5019	output_connection: 17
+ link[5019] flits_passed: 0
+ link[5019] credits_passed: 0. 
+
+
+GenericLink: 	address: 1020	input_connection: 26
+ link[1020] flits_passed: 0
+ link[1020] credits_passed: 0. 
+
+
+GenericLink: 	address: 5020	output_connection: 26
+ link[5020] flits_passed: 0
+ link[5020] credits_passed: 0. 
+
+
+GenericLink: 	address: 1021	output_connection: 2
+ link[1021] flits_passed: 0
+ link[1021] credits_passed: 0. 
+
+
+GenericLink: 	address: 5021	input_connection: 2
+ link[5021] flits_passed: 0
+ link[5021] credits_passed: 0. 
+
+
+GenericLink: 	address: 1022	output_connection: 5
+ link[1022] flits_passed: 0
+ link[1022] credits_passed: 0. 
+
+
+GenericLink: 	address: 5022	input_connection: 5
+ link[5022] flits_passed: 0
+ link[5022] credits_passed: 0. 
+
+
+GenericLink: 	address: 1023	output_connection: 8
+ link[1023] flits_passed: 0
+ link[1023] credits_passed: 0. 
+
+
+GenericLink: 	address: 5023	input_connection: 8
+ link[5023] flits_passed: 0
+ link[5023] credits_passed: 0. 
+
+
+GenericLink: 	address: 1024	input_connection: 2	output_connection: 11
+ link[1024] flits_passed: 1727
+ link[1024] credits_passed: 1727. 
+
+
+GenericLink: 	address: 5024	input_connection: 11	output_connection: 2
+ link[5024] flits_passed: 1269
+ link[5024] credits_passed: 1269. 
+
+
+GenericLink: 	address: 1025	input_connection: 5	output_connection: 14
+ link[1025] flits_passed: 1342
+ link[1025] credits_passed: 1342. 
+
+
+GenericLink: 	address: 5025	input_connection: 14	output_connection: 5
+ link[5025] flits_passed: 0
+ link[5025] credits_passed: 0. 
+
+
+GenericLink: 	address: 1026	input_connection: 8	output_connection: 17
+ link[1026] flits_passed: 1331
+ link[1026] credits_passed: 1331. 
+
+
+GenericLink: 	address: 5026	input_connection: 17	output_connection: 8
+ link[5026] flits_passed: 0
+ link[5026] credits_passed: 0. 
+
+
+GenericLink: 	address: 1027	input_connection: 11	output_connection: 20
+ link[1027] flits_passed: 759
+ link[1027] credits_passed: 759. 
+
+
+GenericLink: 	address: 5027	input_connection: 20	output_connection: 11
+ link[5027] flits_passed: 549
+ link[5027] credits_passed: 549. 
+
+
+GenericLink: 	address: 1028	input_connection: 14	output_connection: 23
+ link[1028] flits_passed: 572
+ link[1028] credits_passed: 572. 
+
+
+GenericLink: 	address: 5028	input_connection: 23	output_connection: 14
+ link[5028] flits_passed: 0
+ link[5028] credits_passed: 0. 
+
+
+GenericLink: 	address: 1029	input_connection: 17	output_connection: 26
+ link[1029] flits_passed: 572
+ link[1029] credits_passed: 572. 
+
+
+GenericLink: 	address: 5029	input_connection: 26	output_connection: 17
+ link[5029] flits_passed: 0
+ link[5029] credits_passed: 0. 
+
+
+GenericLink: 	address: 1030	input_connection: 20
+ link[1030] flits_passed: 0
+ link[1030] credits_passed: 0. 
+
+
+GenericLink: 	address: 5030	output_connection: 20
+ link[5030] flits_passed: 0
+ link[5030] credits_passed: 0. 
+
+
+GenericLink: 	address: 1031	input_connection: 23
+ link[1031] flits_passed: 0
+ link[1031] credits_passed: 0. 
+
+
+GenericLink: 	address: 5031	output_connection: 23
+ link[5031] flits_passed: 0
+ link[5031] credits_passed: 0. 
+
+
+GenericLink: 	address: 1032	input_connection: 26
+ link[1032] flits_passed: 0
+ link[1032] credits_passed: 0. 
+
+
+GenericLink: 	address: 5032	output_connection: 26
+ link[5032] flits_passed: 0
+ link[5032] credits_passed: 0. 
+
+------------ End SimIris ---------------------

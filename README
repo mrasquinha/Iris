@@ -1,0 +1,7 @@
+GCOV command line
+-------------------
+1. the compiler flags for gcov ( -fprofile-arcs and -ftest-coverage ) are already added to the makefile
+2. Run the binary for ringSim
+3. gcov -n ringSim ( may be reqd to rename ringSim-ringSim.gcna )
+    Remove the n flag for detailed gcov files.
+
